@@ -40,7 +40,7 @@ export default function FruitsDeMer() {
     const [productDesc2, setProductDesc2] = useState("")
     const [productPrix2, setProductPrix2] = useState("")
     useEffect(() => {
-        const docRef2 = doc(db, 'Products', 'A8hoViSD4F3OrhRhmKGk')
+        const docRef2 = doc(db, 'Products', 'BbzW3TO6OceYmmLFuUap')
         getDoc(docRef2).then(docSnap2 => {
             if(docSnap2.exists()) {
                 setProductImg2(docSnap2.get('img_url'))
@@ -58,7 +58,7 @@ export default function FruitsDeMer() {
     const [productDesc3, setProductDesc3] = useState("")
     const [productPrix3, setProductPrix3] = useState("")
     useEffect(() => {
-        const docRef3 = doc(db, 'Products', 'RNZgHuU42MpYtaF3wcyp')
+        const docRef3 = doc(db, 'Products', 'N7EB3GGlYQp8WKXega9X')
         getDoc(docRef3).then(docSnap3 => {
             if(docSnap3.exists()) {
                 setProductImg3(docSnap3.get('img_url'))
@@ -94,7 +94,7 @@ export default function FruitsDeMer() {
     const [productDesc5, setProductDesc5] = useState("")
     const [productPrix5, setProductPrix5] = useState("")
     useEffect(() => {
-        const docRef5 = doc(db, 'Products', 'TxkwyGblk7xiyWznIJch')
+        const docRef5 = doc(db, 'Products', 'RNZgHuU42MpYtaF3wcyp')
         getDoc(docRef5).then(docSnap5 => {
             if(docSnap5.exists()) {
                 setProductImg5(docSnap5.get('img_url'))
@@ -120,6 +120,24 @@ export default function FruitsDeMer() {
                 setProductPrice6(docSnap6.get('price'))
                 setProductDesc6(docSnap6.get('description'))
                 setProductPrix6(docSnap6.get('prix'))
+            }
+        })
+    }, [])
+
+    const [productImg7, setProductImg7] = useState("")
+    const [productName7, setProductName7] = useState("")
+    const [productPrice7, setProductPrice7] = useState("")
+    const [productDesc7, setProductDesc7] = useState("")
+    const [productPrix7, setProductPrix7] = useState("")
+    useEffect(() => {
+        const docRef7 = doc(db, 'Products', 'A8hoViSD4F3OrhRhmKGk')
+        getDoc(docRef7).then(docSnap7 => {
+            if(docSnap7.exists()) {
+                setProductImg7(docSnap7.get('img_url'))
+                setProductName7(docSnap7.get('name'))
+                setProductPrice7(docSnap7.get('price'))
+                setProductDesc7(docSnap7.get('description'))
+                setProductPrix7(docSnap7.get('prix'))
             }
         })
     }, [])
@@ -165,6 +183,7 @@ export default function FruitsDeMer() {
     const [openOverlay4, setOpenOverlay4] = useState(false)
     const [openOverlay5, setOpenOverlay5] = useState(false)
     const [openOverlay6, setOpenOverlay6] = useState(false)
+    const [openOverlay7, setOpenOverlay7] = useState(false)
 
     const [open, setOpen] = useState(false)
 
@@ -569,6 +588,66 @@ export default function FruitsDeMer() {
                                   :
                                   <Typography variant="body2" color="text.secondary">
                                       {productDesc6}
+                                  </Typography>
+                          }
+                      </CardContent>
+                </div>
+            </Card>
+            <Card sx={{ maxWidth: 400, minWidth: 400, border: '1px solid lightgray' }}>
+                <CardHeader
+                    avatar={
+                        <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
+                            <WavesIcon />
+                        </Avatar>
+                    }
+                    action={
+                        <>
+                            <Tooltip title="Ajouter l'article au panier" sx={{ cursor: 'pointer' }}>
+                                <IconButton onClick={() => addToCart({ name: productName7, price: productPrix7, img_url: productImg7 })}>
+                                    <AddShoppingCartIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <Snackbar
+                                open={open}
+                                autoHideDuration={10000}
+                                onClose={handleClose}
+                                message='Ajouté au panier avec succès'
+                                action={actionSnack}
+                                bodyStyle={{ bgcolor: blue[500] }}
+                            />
+                        </>
+                    }
+                    title={productName7}
+                    subheader={productPrice7}
+                />
+                <div onMouseEnter={() => setOpenOverlay7(true)} onMouseLeave={() => setOpenOverlay7(false)}>
+                      <CardMedia
+                          component="img"
+                          height="194"
+                          image={productImg7}
+                          alt={productName7}
+                      />
+                      <CardContent>
+                          {
+                              openOverlay7
+                                  ?
+                                  <Button
+                                      variant='contained' sx={{
+                                          width: '100%',
+                                          background: 'black',
+                                          color: 'white',
+                                          paddingY: 2,
+                                          '&:hover': {
+                                              bgcolor: blue[500],
+                                          }
+                                      }}
+                                      onClick={() => addToCart({ name: productName7, price: productPrix7, img_url: productImg7 })}
+                                  >
+                                      Ajouter au panier
+                                  </Button>
+                                  :
+                                  <Typography variant="body2" color="text.secondary">
+                                      {productDesc7}
                                   </Typography>
                           }
                       </CardContent>
